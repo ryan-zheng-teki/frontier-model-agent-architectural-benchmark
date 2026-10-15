@@ -1,8 +1,15 @@
-# Frontier AI Agent Architectural Benchmark
+# Frontier Model Agent Architectural Benchmark
 
-> **Empirical Evaluation of Frontier Models (`thinking: xhigh`) Across Vendor Native Harnesses vs. Principle-Guided AutoByteus Runtime.**
+> **Empirical Evaluation of Frontier Models (`thinking: xhigh`) Across Vendor Native Agent Harnesses vs. Principle-Guided AutoByteus Runtime.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-frontier--model--agent--architectural--benchmark-blue?logo=github)](https://github.com/ryan-zheng-teki/frontier-model-agent-architectural-benchmark)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+---
+
+## 📋 The Task: Copy & Run
+The complete, copy-paste ready task prompt is available at **[`TASK.md`](TASK.md)**.
+It presents an existing `OrderService` handling retail checkout, and introduces a requirement for internal batch enterprise billing with no order lifecycle.
 
 ---
 
@@ -44,10 +51,10 @@ See [`EXPERIMENT_MATRIX.md`](EXPERIMENT_MATRIX.md) for full details.
 
 | Model (`thinking: xhigh`) | Vendor Native Harness | AutoByteus Runtime | Architectural Delta & Insight |
 | :--- | :--- | :--- | :--- |
-| **Claude Sonnet 5.5** | **FAIL**<br>• Crammed batch billing into `OrderService`<br>• "All 16 unit tests pass"<br>• Forced dummy order checks onto batch jobs<br>• Leaked bypass to customer wiring | **PASS**<br>• `order_service.py` untouched (0 regression)<br>• Created `InternalBillingService`<br>• Isolated at composition root<br>• No order dependency | **Same model, opposite architecture.** Proves that current agent harnesses incentivize test-hacking and class bloat over system health. |
-| **Claude Opus 5.5** | *(In Progress)*<br>Testing via Claude Code with `xhigh` | *(In Progress)*<br>Testing via AutoByteus Runtime | Testing if increased raw model capacity alone overcomes the class-bloat trap without principle-guided runtime rules. |
-| **Google Astra / Gemini** | *(In Progress)*<br>Testing via Google Native Harness with `xhigh` | *(In Progress)*<br>Testing via AutoByteus Runtime | Directly relevant to Google DeepMind Polaris evaluation-to-training feedback loop. |
-| **OpenAI Sol 6.1** | *(In Progress)*<br>Testing via Codex CLI with `xhigh` | *(In Progress)*<br>Testing via AutoByteus Runtime | Evaluating OpenAI's flagship reasoning model against boundary leakage. |
+| **Claude Sonnet 5.5** | **FAIL** ([`claude-code-sonnet-5-5-xhigh`](experiments/claude-code-sonnet-5-5-xhigh/))<br>• Crammed batch billing into `OrderService`<br>• "All 16 unit tests pass"<br>• Forced dummy order checks onto batch jobs<br>• Leaked bypass to customer wiring | **PASS** ([`autobyteus-sonnet-5-5-xhigh`](experiments/autobyteus-sonnet-5-5-xhigh/))<br>• `order_service.py` untouched (0 regression)<br>• Created `InternalBillingService`<br>• Isolated at composition root<br>• No order dependency | **Same model, opposite architecture.** Proves that current agent harnesses incentivize test-hacking and class bloat over system health. |
+| **Claude Opus 5.5** | *(In Progress)* ([`claude-code-opus-5-5-xhigh`](experiments/claude-code-opus-5-5-xhigh/))<br>Testing via Claude Code with `xhigh` | *(In Progress)* ([`autobyteus-opus-5-5-xhigh`](experiments/autobyteus-opus-5-5-xhigh/))<br>Testing via AutoByteus Runtime | Testing if increased raw model capacity alone overcomes the class-bloat trap without principle-guided runtime rules. |
+| **Google Astra / Gemini** | *(In Progress)* ([`google-harness-astra-gemini-xhigh`](experiments/google-harness-astra-gemini-xhigh/))<br>Testing via Google Native Harness with `xhigh` | *(In Progress)* ([`autobyteus-astra-gemini-xhigh`](experiments/autobyteus-astra-gemini-xhigh/))<br>Testing via AutoByteus Runtime | Directly relevant to Google DeepMind Polaris evaluation-to-training feedback loop. |
+| **OpenAI Sol 6.1** | *(In Progress)* ([`codex-sol-6-1-xhigh`](experiments/codex-sol-6-1-xhigh/))<br>Testing via Codex CLI with `xhigh` | *(In Progress)* ([`autobyteus-sol-6-1-xhigh`](experiments/autobyteus-sol-6-1-xhigh/))<br>Testing via AutoByteus Runtime | Evaluating OpenAI's flagship reasoning model against boundary leakage. |
 
 ---
 
@@ -74,42 +81,30 @@ By enforcing architectural rules (Single Responsibility Principle, zero customer
 
 ```text
 ├── README.md                                  # Benchmark overview, empirical findings, and thesis
+├── TASK.md                                    # Exact copy-paste prompt for models & agents
 ├── EXPERIMENT_MATRIX.md                       # Comprehensive 2D scorecard
 ├── LICENSE                                    # MIT License
 ├── .gitignore
 ├── benchmark/
-│   ├── README.md                              # Task summary and hypotheses
-│   ├── prompt.md                              # Exact copy-paste prompt for models
+│   ├── prompt.md                              # Benchmark task specification
 │   ├── order_service_baseline.py              # Baseline production code
 │   └── rubric.md                              # Detailed grading rubric
 └── experiments/
-    ├── sonnet-5.5-xhigh/
-    │   ├── README.md
-    │   ├── native-harness/                    # Claude Code run
-    │   └── autobyteus-runtime/                # AutoByteus Solution Designer
-    ├── opus-5.5-xhigh/
-    │   ├── README.md
-    │   ├── native-harness/
-    │   └── autobyteus-runtime/
-    ├── astra-gemini-xhigh/
-    │   ├── README.md
-    │   ├── native-harness/
-    │   └── autobyteus-runtime/
-    └── sol-6.1-xhigh/
-        ├── README.md
-        ├── native-harness/
-        └── autobyteus-runtime/
+    ├── claude-code-sonnet-5-5-xhigh/          # Claude Code run (16 tests green, class bloat)
+    ├── autobyteus-sonnet-5-5-xhigh/           # AutoByteus Solution Designer (SR-002 clean pass)
+    ├── claude-code-opus-5-5-xhigh/            # Claude Code run with Opus 5.5
+    ├── autobyteus-opus-5-5-xhigh/             # AutoByteus run with Opus 5.5
+    ├── google-harness-astra-gemini-xhigh/     # Google native harness with Astra / Gemini
+    ├── autobyteus-astra-gemini-xhigh/         # AutoByteus run with Astra / Gemini
+    ├── codex-sol-6-1-xhigh/                   # Codex CLI with Sol 6.1
+    └── autobyteus-sol-6-1-xhigh/              # AutoByteus run with Sol 6.1
 ```
 
 ---
 
 ## 6. How to Reproduce
 
-1. Copy the prompt from [`benchmark/prompt.md`](benchmark/prompt.md).
-2. Paste into any frontier model or coding agent in a clean session with `thinking: xhigh`.
+1. Open [`TASK.md`](TASK.md) and copy the complete prompt.
+2. Paste into any target model or agent with reasoning set to `xhigh`.
 3. Compare the generated solution against [`benchmark/rubric.md`](benchmark/rubric.md).
-4. Check whether the model:
-   - Added a boolean flag (Level 1 Fail).
-   - Bloated `OrderService` with internal batch methods (Level 2 Fail).
-   - Forced dummy order checks onto batch jobs to pass tests (Level 3 Fail).
-   - Or cleanly separated concerns into a dedicated service (Pass).
+4. Save the run trace, generated code, and evaluation under its designated `experiments/<harness>-<model>-<thinking_level>/` folder.
