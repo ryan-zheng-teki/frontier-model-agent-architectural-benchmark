@@ -1,0 +1,10 @@
+cwd: /tmp/autobyteus-internal-payments
+command: PYTHONDONTWRITEBYTECODE=1 python -m unittest -v test_order_service.CustomerOrderTests.test_nonpositive_amount_stops_before_all_dependencies
+test_nonpositive_amount_stops_before_all_dependencies (test_order_service.CustomerOrderTests.test_nonpositive_amount_stops_before_all_dependencies) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+
+exit_code: 0

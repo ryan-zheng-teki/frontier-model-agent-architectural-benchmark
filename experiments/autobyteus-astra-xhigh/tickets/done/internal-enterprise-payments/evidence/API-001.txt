@@ -1,0 +1,10 @@
+cwd: /tmp/autobyteus-internal-payments
+command: PYTHONDONTWRITEBYTECODE=1 python -m unittest -v test_order_service.PaymentTests.test_success_returns_exact_result_and_charges_once
+test_success_returns_exact_result_and_charges_once (test_order_service.PaymentTests.test_success_returns_exact_result_and_charges_once) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+
+exit_code: 0

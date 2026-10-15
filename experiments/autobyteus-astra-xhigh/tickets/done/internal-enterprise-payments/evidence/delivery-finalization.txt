@@ -1,0 +1,44 @@
+cwd: /tmp/autobyteus-test-sandbox
+command: git rev-parse HEAD
+f49c1c40b74b589c6b056a9abba0bb2b7e2a74d7
+
+exit_code: 0
+cwd: /tmp/autobyteus-test-sandbox
+command: git branch -vv
+* master f49c1c4 docs: archive verified internal payments delivery package
+
+exit_code: 0
+cwd: /tmp/autobyteus-test-sandbox
+command: git worktree list
+/tmp/autobyteus-test-sandbox  f49c1c4 [master]
+
+exit_code: 0
+cwd: /tmp/autobyteus-test-sandbox
+command: git remote -v
+
+exit_code: 0
+cwd: /tmp/autobyteus-test-sandbox
+command: git diff ef2a646 -- order_service.py test_order_service.py DESIGN.md
+
+exit_code: 0
+cwd: /tmp/autobyteus-test-sandbox
+command: python -m unittest -v test_order_service
+test_gateway_exception_propagates_without_customer_effects (test_order_service.CustomerOrderTests.test_gateway_exception_propagates_without_customer_effects) ... ok
+test_missing_or_inactive_customer_stops_before_order_lookup (test_order_service.CustomerOrderTests.test_missing_or_inactive_customer_stops_before_order_lookup) ... ok
+test_missing_or_nonpending_order_stops_before_charge (test_order_service.CustomerOrderTests.test_missing_or_nonpending_order_stops_before_charge) ... ok
+test_nonpositive_amount_stops_before_all_dependencies (test_order_service.CustomerOrderTests.test_nonpositive_amount_stops_before_all_dependencies) ... ok
+test_success_preserves_full_sequence_state_and_return_identity (test_order_service.CustomerOrderTests.test_success_preserves_full_sequence_state_and_return_identity) ... ok
+test_unsuccessful_payment_stops_before_mutation_save_and_receipt (test_order_service.CustomerOrderTests.test_unsuccessful_payment_stops_before_mutation_save_and_receipt) ... ok
+test_gateway_exception_propagates_unchanged (test_order_service.PaymentTests.test_gateway_exception_propagates_unchanged) ... ok
+test_nonpositive_amount_rejected_before_charge (test_order_service.PaymentTests.test_nonpositive_amount_rejected_before_charge) ... ok
+test_success_returns_exact_result_and_charges_once (test_order_service.PaymentTests.test_success_returns_exact_result_and_charges_once) ... ok
+test_unsuccessful_result_uses_existing_exception (test_order_service.PaymentTests.test_unsuccessful_result_uses_existing_exception) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.002s
+
+OK
+
+exit_code: 0
+Original .codex file set and SHA256 contents unchanged: PASS
+Ticket worktree removed and local branch deleted after fast-forward: PASS

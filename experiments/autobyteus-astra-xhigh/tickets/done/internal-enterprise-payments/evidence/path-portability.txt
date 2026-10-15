@@ -1,0 +1,1 @@
+Portable-path inspection: PASS. Repository files checked for Windows forbidden characters/control bytes, reserved device names, trailing dot/space and case-fold collisions. No target OS build policy supplied; conservative cross-platform check used. No offending names.

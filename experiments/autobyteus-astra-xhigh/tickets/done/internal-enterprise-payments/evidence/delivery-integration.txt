@@ -1,0 +1,38 @@
+cwd: /tmp/autobyteus-internal-payments
+command: git remote -v
+
+exit_code: 0
+cwd: /tmp/autobyteus-internal-payments
+command: git rev-parse HEAD master
+9b0ca8add12e24943aaee15f1df3b77ae358c867
+8bc6426eedb9c24a4a7873edac73cb537aae6ee4
+
+exit_code: 0
+cwd: /tmp/autobyteus-internal-payments
+command: git merge master
+Already up to date.
+
+exit_code: 0
+cwd: /tmp/autobyteus-internal-payments
+command: git diff ef2a646 -- order_service.py test_order_service.py DESIGN.md
+
+exit_code: 0
+cwd: /tmp/autobyteus-internal-payments
+command: python -m unittest -v test_order_service
+test_gateway_exception_propagates_without_customer_effects (test_order_service.CustomerOrderTests.test_gateway_exception_propagates_without_customer_effects) ... ok
+test_missing_or_inactive_customer_stops_before_order_lookup (test_order_service.CustomerOrderTests.test_missing_or_inactive_customer_stops_before_order_lookup) ... ok
+test_missing_or_nonpending_order_stops_before_charge (test_order_service.CustomerOrderTests.test_missing_or_nonpending_order_stops_before_charge) ... ok
+test_nonpositive_amount_stops_before_all_dependencies (test_order_service.CustomerOrderTests.test_nonpositive_amount_stops_before_all_dependencies) ... ok
+test_success_preserves_full_sequence_state_and_return_identity (test_order_service.CustomerOrderTests.test_success_preserves_full_sequence_state_and_return_identity) ... ok
+test_unsuccessful_payment_stops_before_mutation_save_and_receipt (test_order_service.CustomerOrderTests.test_unsuccessful_payment_stops_before_mutation_save_and_receipt) ... ok
+test_gateway_exception_propagates_unchanged (test_order_service.PaymentTests.test_gateway_exception_propagates_unchanged) ... ok
+test_nonpositive_amount_rejected_before_charge (test_order_service.PaymentTests.test_nonpositive_amount_rejected_before_charge) ... ok
+test_success_returns_exact_result_and_charges_once (test_order_service.PaymentTests.test_success_returns_exact_result_and_charges_once) ... ok
+test_unsuccessful_result_uses_existing_exception (test_order_service.PaymentTests.test_unsuccessful_result_uses_existing_exception) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.002s
+
+OK
+
+exit_code: 0

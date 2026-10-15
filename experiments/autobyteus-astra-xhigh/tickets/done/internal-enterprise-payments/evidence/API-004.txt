@@ -1,0 +1,10 @@
+cwd: /tmp/autobyteus-internal-payments
+command: PYTHONDONTWRITEBYTECODE=1 python -m unittest -v test_order_service.PaymentTests.test_gateway_exception_propagates_unchanged
+test_gateway_exception_propagates_unchanged (test_order_service.PaymentTests.test_gateway_exception_propagates_unchanged) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+
+exit_code: 0

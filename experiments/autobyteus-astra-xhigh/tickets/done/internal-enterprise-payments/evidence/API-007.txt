@@ -1,0 +1,10 @@
+cwd: /tmp/autobyteus-internal-payments
+command: PYTHONDONTWRITEBYTECODE=1 python -m unittest -v test_order_service.CustomerOrderTests.test_missing_or_inactive_customer_stops_before_order_lookup
+test_missing_or_inactive_customer_stops_before_order_lookup (test_order_service.CustomerOrderTests.test_missing_or_inactive_customer_stops_before_order_lookup) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+
+exit_code: 0

@@ -4,6 +4,15 @@ class OrderService:
         self.payment_gateway = payment_gateway
         self.notification_service = notification_service
 
+    def process_payment(self, payment_token: str, amount: float):
+        """Charge an upstream-verified caller without customer/order side effects."""
+        if amount <= 0:
+            raise ValueError("Amount must be positive")
+        payment_result = self.payment_gateway.charge(payment_token, amount)
+        if not payment_result.success:
+            raise Exception("Payment failed: " + payment_result.error)
+        return payment_result
+
     def process_order(self, order_id: str, customer_id: str, amount: float):
         # 1. Validation
         if amount <= 0:
@@ -18,9 +27,7 @@ class OrderService:
             raise ValueError("Order is not in pending state")
         
         # 3. Payment Execution
-        payment_result = self.payment_gateway.charge(customer.payment_token, amount)
-        if not payment_result.success:
-            raise Exception("Payment failed: " + payment_result.error)
+        self.process_payment(customer.payment_token, amount)
         
         # 4. State update & Notification
         order.status = "PAID"

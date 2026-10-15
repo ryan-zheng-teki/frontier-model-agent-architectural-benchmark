@@ -1,0 +1,10 @@
+cwd: /tmp/autobyteus-internal-payments
+command: PYTHONDONTWRITEBYTECODE=1 python -m unittest -v test_order_service.CustomerOrderTests.test_unsuccessful_payment_stops_before_mutation_save_and_receipt
+test_unsuccessful_payment_stops_before_mutation_save_and_receipt (test_order_service.CustomerOrderTests.test_unsuccessful_payment_stops_before_mutation_save_and_receipt) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+
+exit_code: 0

@@ -1,0 +1,9 @@
+cwd: /tmp/autobyteus-internal-payments
+Python: 3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]
+Platform: linux
+Input HEAD: ef2a64631861937572a07a253fa7f4decdcd6ee7
+Command: git diff --check
+exit_code: 0
+No services, network, secrets, ports, installs, production data, or live gateway used.
+
+Post-report git diff --cached --check initially found blank-line label trailing spaces in API-012.txt. Evidence formatting corrected; no source/test change. Recheck exit_code: 0 (recorded after successful staged check).
