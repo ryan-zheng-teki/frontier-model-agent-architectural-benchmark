@@ -5,7 +5,7 @@
 **Evaluation Setup:**
 - Frontier models evaluated with high reasoning budget (`thinking: xhigh` / `thinking: high`).
 - Tested across two execution environments:
-  1. **Vendor Native / Agent Harness:** (Anthropic Claude Code, OpenAI Codex CLI, Antigravity AGY).
+  1. **Vendor Native / Agent Harness:** (Anthropic Claude Code, OpenAI Codex CLI, Antigravity AGY, Google Astra Native).
   2. **AutoByteus Runtime:** Autonomous principle-guided runtime with explicit architectural design principles, domain boundary enforcement, and solution review gates.
 
 ---
@@ -17,6 +17,7 @@
 | **Claude Sonnet 5.5** (`xhigh`) | **FAIL** ([`claude-code-sonnet-5-5-xhigh`](experiments/claude-code-sonnet-5-5-xhigh/))<br>• Crammed batch billing into `OrderService`<br>• "All 16 unit tests pass"<br>• Forced dummy order checks onto batch jobs<br>• Leaked bypass to customer wiring | **PASS** ([`autobyteus-sonnet-5-5-xhigh`](experiments/autobyteus-sonnet-5-5-xhigh/))<br>• `order_service.py` untouched (0 regression)<br>• Created `InternalBillingService`<br>• Isolated at composition root<br>• No order dependency | **Same model, opposite architecture.** Proves that current agent harnesses incentivize test-hacking and class bloat over system health. |
 | **Claude Opus 5.5** (`xhigh`) | *(In Progress)* ([`claude-code-opus-5-5-xhigh`](experiments/claude-code-opus-5-5-xhigh/))<br>Testing via Claude Code with `xhigh` | *(In Progress)* ([`autobyteus-opus-5-5-xhigh`](experiments/autobyteus-opus-5-5-xhigh/))<br>Testing via AutoByteus Runtime | Testing if increased raw model capacity alone overcomes the class-bloat trap without principle-guided runtime rules. |
 | **Gemini 3.8** (`high`) | *(In Progress)* ([`agy-gemini-3-8-high`](experiments/agy-gemini-3-8-high/))<br>Testing via Antigravity (AGY) with `high` | *(In Progress)* ([`autobyteus-gemini-3-8-high`](experiments/autobyteus-gemini-3-8-high/))<br>Testing via AutoByteus Runtime | Directly relevant to Google DeepMind Polaris evaluation-to-training feedback loop. |
+| **Google Astra** (`xhigh`) | *(In Progress)* ([`google-astra-xhigh`](experiments/google-astra-xhigh/))<br>Testing via Google Native Harness with `xhigh` | *(In Progress)* ([`autobyteus-astra-xhigh`](experiments/autobyteus-astra-xhigh/))<br>Testing via AutoByteus Runtime | Evaluating Google's flagship reasoning model under maximum thinking budget. |
 | **OpenAI Sol 6.1** (`xhigh`) | *(In Progress)* ([`codex-sol-6-1-xhigh`](experiments/codex-sol-6-1-xhigh/))<br>Testing via Codex CLI with `xhigh` | *(In Progress)* ([`autobyteus-sol-6-1-xhigh`](experiments/autobyteus-sol-6-1-xhigh/))<br>Testing via AutoByteus Runtime | Evaluating OpenAI's flagship reasoning model against boundary leakage. |
 
 ---
@@ -29,24 +30,39 @@ experiments/
 │   ├── run-trace.md
 │   ├── direct-prompt-response.md
 │   ├── order_service.py
+│   ├── DESIGN.md
 │   └── evaluation.md
 ├── autobyteus-sonnet-5-5-xhigh/               # AutoByteus Solution Designer (SR-002)
+│   ├── order_service.py (baseline untouched)
+│   ├── internal_billing_service.py (new service)
 │   ├── DESIGN.md
-│   ├── internal_billing_service.py
 │   └── evaluation.md
 │
 ├── claude-code-opus-5-5-xhigh/                # Ready for Opus 5.5 Claude Code run
+│   ├── order_service.py (baseline)
 │   └── README.md
 ├── autobyteus-opus-5-5-xhigh/                 # Ready for Opus 5.5 AutoByteus run
+│   ├── order_service.py (baseline)
 │   └── README.md
 │
 ├── agy-gemini-3-8-high/                       # Ready for Gemini 3.8 Antigravity (AGY) run
+│   ├── order_service.py (baseline)
 │   └── README.md
 ├── autobyteus-gemini-3-8-high/                # Ready for Gemini 3.8 AutoByteus run
+│   ├── order_service.py (baseline)
+│   └── README.md
+│
+├── google-astra-xhigh/                        # Ready for Google Astra Native run
+│   ├── order_service.py (baseline)
+│   └── README.md
+├── autobyteus-astra-xhigh/                    # Ready for Google Astra AutoByteus run
+│   ├── order_service.py (baseline)
 │   └── README.md
 │
 ├── codex-sol-6-1-xhigh/                       # Ready for Sol 6.1 Codex CLI run
+│   ├── order_service.py (baseline)
 │   └── README.md
 └── autobyteus-sol-6-1-xhigh/                  # Ready for Sol 6.1 AutoByteus run
+    ├── order_service.py (baseline)
     └── README.md
 ```

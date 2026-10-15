@@ -1,6 +1,6 @@
 # Frontier Model Agent Architectural Benchmark
 
-> **Empirical Evaluation of Frontier Models Across Agent Harnesses (Claude Code, Codex, Antigravity AGY) vs. Principle-Guided AutoByteus Runtime.**
+> **Empirical Evaluation of Frontier Models Across Agent Harnesses (Claude Code, Codex, Antigravity AGY, Google Native) vs. Principle-Guided AutoByteus Runtime.**
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-frontier--model--agent--architectural--benchmark-blue?logo=github)](https://github.com/ryan-zheng-teki/frontier-model-agent-architectural-benchmark)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -15,7 +15,7 @@ It presents an existing `OrderService` handling retail checkout, and introduces 
 
 ## 1. Thesis: The Test-Passing Evaluation Gap
 
-Current frontier models (Sonnet 5.5, Opus 5.5, Sol 6.1, Gemini 3.8) excel at writing algorithms and getting unit tests to pass (`pytest == 0`). However, when deployed on real-world production codebases, engineering teams report a widespread systemic failure: **severe codebase bloat, architectural decay, and spaghetti code**.
+Current frontier models (Sonnet 5.5, Opus 5.5, Sol 6.1, Gemini 3.8, Astra) excel at writing algorithms and getting unit tests to pass (`pytest == 0`). However, when deployed on real-world production codebases, engineering teams report a widespread systemic failure: **severe codebase bloat, architectural decay, and spaghetti code**.
 
 Why does this happen?
 
@@ -34,13 +34,14 @@ This benchmark provides a simple, reproducible empirical test that exposes this 
 ## 2. Experimental Setup: 2D Matrix (Models × Harnesses)
 
 All models are evaluated using high reasoning budget across two execution environments:
-1. **Agent Harness:** (Anthropic Claude Code, OpenAI Codex CLI, Antigravity AGY).
+1. **Agent Harness:** (Anthropic Claude Code, OpenAI Codex CLI, Antigravity AGY, Google Native).
 2. **AutoByteus Runtime:** Autonomous principle-guided runtime with explicit architectural design principles, domain boundary enforcement, and solution review gates.
 
 ### Tested Models
 - **Anthropic Claude Sonnet 5.5** (`thinking: xhigh`)
 - **Anthropic Claude Opus 5.5** (`thinking: xhigh`)
 - **Google Gemini 3.8** (`thinking: high`)
+- **Google Astra** (`thinking: xhigh`)
 - **OpenAI Sol 6.1** (`thinking: xhigh`)
 
 ---
@@ -54,6 +55,7 @@ See [`EXPERIMENT_MATRIX.md`](EXPERIMENT_MATRIX.md) for full details.
 | **Claude Sonnet 5.5** (`xhigh`) | **FAIL** ([`claude-code-sonnet-5-5-xhigh`](experiments/claude-code-sonnet-5-5-xhigh/))<br>• Crammed batch billing into `OrderService`<br>• "All 16 unit tests pass"<br>• Forced dummy order checks onto batch jobs<br>• Leaked bypass to customer wiring | **PASS** ([`autobyteus-sonnet-5-5-xhigh`](experiments/autobyteus-sonnet-5-5-xhigh/))<br>• `order_service.py` untouched (0 regression)<br>• Created `InternalBillingService`<br>• Isolated at composition root<br>• No order dependency | **Same model, opposite architecture.** Proves that current agent harnesses incentivize test-hacking and class bloat over system health. |
 | **Claude Opus 5.5** (`xhigh`) | *(In Progress)* ([`claude-code-opus-5-5-xhigh`](experiments/claude-code-opus-5-5-xhigh/))<br>Testing via Claude Code with `xhigh` | *(In Progress)* ([`autobyteus-opus-5-5-xhigh`](experiments/autobyteus-opus-5-5-xhigh/))<br>Testing via AutoByteus Runtime | Testing if increased raw model capacity alone overcomes the class-bloat trap without principle-guided runtime rules. |
 | **Gemini 3.8** (`high`) | *(In Progress)* ([`agy-gemini-3-8-high`](experiments/agy-gemini-3-8-high/))<br>Testing via Antigravity (AGY) with `high` | *(In Progress)* ([`autobyteus-gemini-3-8-high`](experiments/autobyteus-gemini-3-8-high/))<br>Testing via AutoByteus Runtime | Directly relevant to Google DeepMind Polaris evaluation-to-training feedback loop. |
+| **Google Astra** (`xhigh`) | *(In Progress)* ([`google-astra-xhigh`](experiments/google-astra-xhigh/))<br>Testing via Google Native Harness with `xhigh` | *(In Progress)* ([`autobyteus-astra-xhigh`](experiments/autobyteus-astra-xhigh/))<br>Testing via AutoByteus Runtime | Evaluating Google's flagship reasoning model under maximum thinking budget. |
 | **OpenAI Sol 6.1** (`xhigh`) | *(In Progress)* ([`codex-sol-6-1-xhigh`](experiments/codex-sol-6-1-xhigh/))<br>Testing via Codex CLI with `xhigh` | *(In Progress)* ([`autobyteus-sol-6-1-xhigh`](experiments/autobyteus-sol-6-1-xhigh/))<br>Testing via AutoByteus Runtime | Evaluating OpenAI's flagship reasoning model against boundary leakage. |
 
 ---
@@ -87,7 +89,7 @@ By enforcing architectural rules (Single Responsibility Principle, zero customer
 ├── .gitignore
 ├── benchmark/
 │   ├── prompt.md                              # Benchmark task specification
-│   ├── order_service_baseline.py              # Baseline production code
+│   ├── order_service.py                       # Baseline production code
 │   └── rubric.md                              # Detailed grading rubric
 └── experiments/
     ├── claude-code-sonnet-5-5-xhigh/          # Claude Code run (16 tests green, class bloat)
@@ -96,6 +98,8 @@ By enforcing architectural rules (Single Responsibility Principle, zero customer
     ├── autobyteus-opus-5-5-xhigh/             # AutoByteus run with Opus 5.5
     ├── agy-gemini-3-8-high/                   # Antigravity (AGY) run with Gemini 3.8
     ├── autobyteus-gemini-3-8-high/            # AutoByteus run with Gemini 3.8
+    ├── google-astra-xhigh/                    # Google Native run with Astra
+    ├── autobyteus-astra-xhigh/                # AutoByteus run with Astra
     ├── codex-sol-6-1-xhigh/                   # Codex CLI with Sol 6.1
     └── autobyteus-sol-6-1-xhigh/              # AutoByteus run with Sol 6.1
 ```
@@ -104,7 +108,7 @@ By enforcing architectural rules (Single Responsibility Principle, zero customer
 
 ## 6. How to Reproduce
 
-1. Open [`TASK.md`](TASK.md) and copy the complete prompt.
-2. Paste into any target model or agent with reasoning set to `high` / `xhigh`.
+1. Open [`TASK.md`](TASK.md) and copy the prompt.
+2. Run in the target experiment directory with reasoning set to `high` / `xhigh`.
 3. Compare the generated solution against [`benchmark/rubric.md`](benchmark/rubric.md).
-4. Save the run trace, generated code, and evaluation under its designated `experiments/<harness>-<model>-<thinking_level>/` folder.
+4. Inspect code diffs via `git diff` and review the generated `DESIGN.md`.
