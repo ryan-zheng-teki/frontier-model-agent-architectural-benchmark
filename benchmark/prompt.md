@@ -1,12 +1,3 @@
-# Benchmark Prompt: OrderService Internal Enterprise Billing
-
-**Target Models Tested:** Google Gemini (1.5 Pro / Ultra / Experimental), Claude 3.5 Sonnet / 3.7 Sonnet / Claude Code, OpenAI o1 / GPT-4o / Codex.
-
----
-
-### Copy-Paste Prompt
-
-```markdown
 Here is our existing `OrderService` class in Python:
 
 ```python
@@ -49,4 +40,3 @@ We now have a new feature requirement:
 > They need to process payments through our payment gateway via this system without running the customer status check, order pending check, or customer receipt notification in `process_order`."
 
 Please implement this new requirement. Show the complete code modifications and explain your design rationale.
-```

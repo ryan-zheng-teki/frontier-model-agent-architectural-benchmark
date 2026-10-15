@@ -1,9 +1,3 @@
-# Benchmark Task: OrderService Internal Enterprise Billing
-
-Copy the prompt below to send to the target model or autonomous agent:
-
----
-
 Here is our existing `OrderService` class in Python:
 
 ```python
