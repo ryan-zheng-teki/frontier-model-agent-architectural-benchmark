@@ -1,7 +1,7 @@
 # Experiment: autobyteus-astra-xhigh
 
 - **Harness:** AutoByteus Principle-Guided Autonomous Runtime (Solution Designer)
-- **Model:** Project Astra Flagship
+- **Model:** Astra Flagship
 - **Reasoning Level:** `thinking: xhigh`
 - **Status:** Pending Run
 
