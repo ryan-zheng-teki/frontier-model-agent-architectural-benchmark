@@ -1,0 +1,16 @@
+test_checkout_delegates_payment_to_shared_operation (test_order_service.CheckoutTests.test_checkout_delegates_payment_to_shared_operation) ... ok
+test_gateway_exception_propagates_unchanged_without_completion (test_order_service.CheckoutTests.test_gateway_exception_propagates_unchanged_without_completion) ... ok
+test_missing_or_inactive_customer_fails_before_order_lookup (test_order_service.CheckoutTests.test_missing_or_inactive_customer_fails_before_order_lookup) ... ok
+test_missing_or_nonpending_order_fails_before_charge (test_order_service.CheckoutTests.test_missing_or_nonpending_order_fails_before_charge) ... ok
+test_nonpositive_amounts_fail_before_any_dependency_access (test_order_service.CheckoutTests.test_nonpositive_amounts_fail_before_any_dependency_access) ... ok
+test_rejection_prevents_order_completion (test_order_service.CheckoutTests.test_rejection_prevents_order_completion) ... ok
+test_success_preserves_charge_paid_save_receipt_and_same_order (test_order_service.CheckoutTests.test_success_preserves_charge_paid_save_receipt_and_same_order) ... ok
+test_gateway_exception_propagates_unchanged_without_lifecycle_access (test_order_service.PaymentTests.test_gateway_exception_propagates_unchanged_without_lifecycle_access) ... ok
+test_nonpositive_amounts_fail_before_charge_without_lifecycle_access (test_order_service.PaymentTests.test_nonpositive_amounts_fail_before_charge_without_lifecycle_access) ... ok
+test_rejection_preserves_error_without_lifecycle_access (test_order_service.PaymentTests.test_rejection_preserves_error_without_lifecycle_access) ... ok
+test_success_returns_exact_gateway_result_without_lifecycle_access (test_order_service.PaymentTests.test_success_returns_exact_gateway_result_without_lifecycle_access) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.002s
+
+OK
