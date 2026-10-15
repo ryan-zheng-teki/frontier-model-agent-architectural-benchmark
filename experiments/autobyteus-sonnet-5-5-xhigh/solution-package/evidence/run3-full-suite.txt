@@ -1,0 +1,23 @@
+$ python3 -B -m unittest discover -v -p "test_*.py"
+test_tc001_inactive_account_charged_with_stored_token (test_enterprise_billing_boundary.EnterpriseChargeBoundaryTests) ... ok
+test_tc002_no_order_access_no_receipt_dependency (test_enterprise_billing_boundary.EnterpriseChargeBoundaryTests) ... ok
+test_tc003_decline_same_error_as_customer_path_and_no_state_change (test_enterprise_billing_boundary.EnterpriseChargeBoundaryTests) ... ok
+test_tc004_non_positive_amount_rejected_before_any_call (test_enterprise_billing_boundary.EnterpriseChargeBoundaryTests) ... ok
+test_tc005_unknown_account_rejected_without_charge (test_enterprise_billing_boundary.EnterpriseChargeBoundaryTests) ... ok
+test_tc006_billing_job_mixed_batch (test_enterprise_billing_boundary.EnterpriseChargeBoundaryTests) ... ok
+test_tc007_customer_and_internal_traffic_share_collaborators (test_enterprise_billing_boundary.EnterpriseChargeBoundaryTests) ... ok
+test_tc008_matrix (test_enterprise_billing_boundary.ProcessOrderDifferentialTests) ... ok
+test_charges_without_status_or_order_checks_or_receipt (test_order_service.EnterpriseBillingTests) ... ok
+test_declined_payment_raises (test_order_service.EnterpriseBillingTests) ... ok
+test_has_no_notification_dependency (test_order_service.EnterpriseBillingTests) ... ok
+test_non_positive_amount_rejected_before_any_lookup_or_charge (test_order_service.EnterpriseBillingTests) ... ok
+test_unknown_account_rejected_without_charging (test_order_service.EnterpriseBillingTests) ... ok
+test_declined_payment (test_order_service.ProcessOrderPreservedTests) ... ok
+test_happy_path (test_order_service.ProcessOrderPreservedTests) ... ok
+test_inactive_customer_rejected (test_order_service.ProcessOrderPreservedTests) ... ok
+test_non_pending_order_rejected (test_order_service.ProcessOrderPreservedTests) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.007s
+
+OK

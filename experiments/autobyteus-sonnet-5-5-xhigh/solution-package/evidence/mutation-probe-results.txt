@@ -1,0 +1,9 @@
+M1 add is_active check to charge_account -> boundary:KILLED existing:KILLED
+M2 add get_order call to charge_account -> boundary:KILLED existing:KILLED
+M3 drop amount check in charge_account -> boundary:KILLED existing:KILLED
+M4 drop unknown-account check -> boundary:KILLED existing:KILLED
+M5 decline message changed in helper -> boundary:KILLED existing:KILLED
+M6 process_order skips receipt -> boundary:KILLED existing:KILLED
+M7 process_order drops pending check -> boundary:KILLED existing:KILLED
+M8 process_order charges before order check (reorder) -> boundary:KILLED existing:KILLED
+M9 enterprise returns None instead of gateway result -> boundary:KILLED existing:KILLED
