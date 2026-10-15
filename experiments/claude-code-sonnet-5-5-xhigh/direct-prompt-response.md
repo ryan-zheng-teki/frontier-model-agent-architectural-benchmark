@@ -1,6 +1,6 @@
 # Claude Sonnet Response & Design Rationale
 
-**Model:** Claude 3.5 / 5.5 Sonnet (Direct Prompt)  
+**Model:** Claude Sonnet 5.5 (Direct Prompt)  
 **Date:** 2026-10-15  
 
 ## Model Output

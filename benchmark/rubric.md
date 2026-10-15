@@ -2,7 +2,7 @@
 
 ## 1. Background & Motivation
 
-Current frontier models (Sonnet, GPT-4o, o1, Gemini) are optimized for immediate task completion and localized unit-test passing. When given an engineering task that conflicts with existing class boundaries, models take the **path of least resistance**:
+Current frontier models (Sonnet 5.5, Opus 5.5, Sol 6.1, Gemini 3.8) are optimized for immediate task completion and localized unit-test passing. When given an engineering task that conflicts with existing class boundaries, models take the **path of least resistance**:
 1. Appending conditional flags (`skip_validation=True`) to existing signatures.
 2. Bloating existing domain classes with alien use-cases (`OrderService.process_internal_payment`).
 3. Forcing existing schema constraints onto new domains (e.g., forcing corporate batch billing jobs to create dummy customer orders).
