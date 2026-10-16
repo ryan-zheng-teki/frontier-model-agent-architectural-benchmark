@@ -20,7 +20,6 @@
 | --- | --- | --- | --- |
 | `/Users/normy/Desktop/claude-test/DESIGN.md` | The only long-lived project doc. The design review and code review asked delivery to reconfirm it against the final code. | Updated | I checked it line by line against `order_service.py`. Entry-point table: checks and notification per path match. `_charge_and_mark_paid`: failure raises `Exception("Payment failed: …")` and leaves the order unchanged; success marks it PAID and saves it. The receipt is sent only in `process_order`. Rules 1–3 hold. Known Risks R-001, R-002 and U-001 match the accepted risks. The Verification section matches the 15 tests. Only the ticket path and the run command changed. |
 | Other docs (`README`, `AGENTS.md`, `RELEASE.md`) | Looked for other docs that might be affected | No change | None exist in the workspace. |
-| `/Users/normy/Desktop/claude-test/agent-feedback/` | Present in the workspace | No change | Not project documentation and not part of this ticket. Not touched. |
 
 ## Docs Updated
 

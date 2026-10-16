@@ -14,7 +14,7 @@
 - Trigger: Architecture Design Complete (SR-002) from `/solution_designer`
 - Prior Review Round Reviewed: N/A (first review)
 - Latest Authoritative Round: 1
-- Current-State Evidence Basis: `/Users/normy/Desktop/claude-test/order_service.py` read in full (29 lines, unchanged); workspace listing (`DESIGN.md`, `agent-feedback/`, `order_service.py`, `tickets/`); no tests or other callers in the workspace (matches investigation grep)
+- Current-State Evidence Basis: `/Users/normy/Desktop/claude-test/order_service.py` read in full (29 lines, unchanged); workspace listing (`DESIGN.md`, `order_service.py`, `tickets/`); no tests or other callers in the workspace (matches investigation grep)
 
 ## Routing Classification Review
 

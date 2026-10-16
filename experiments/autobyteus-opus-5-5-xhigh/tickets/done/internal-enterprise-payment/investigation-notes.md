@@ -37,7 +37,7 @@
 | 2026-10-16 | Code | `/Users/normy/Desktop/claude-test/order_service.py` (30 lines) | Only production code | One class, one method `process_order`; steps 1–4 below | None |
 | 2026-10-16 | Command | `grep -rn "process_order\|OrderService" --include=*.py .` | Find callers/tests | Only the definition; no callers or tests in the workspace | Callers live outside this workspace (unknown U-001) |
 | 2026-10-16 | Command | `git rev-parse --is-inside-work-tree` | Repository mode | Not a git repository | Non-git bootstrap |
-| 2026-10-16 | Command | `test -e DESIGN.md`; `ls -la` | Project design authority | No `DESIGN.md`; only `order_service.py`, `.claude/`, `agent-feedback/` | The user asked for a new `DESIGN.md` |
+| 2026-10-16 | Command | `test -e DESIGN.md`; `ls -la` | Project design authority | No `DESIGN.md`; only `order_service.py`, `.claude/` | The user asked for a new `DESIGN.md` |
 | 2026-10-16 | Command | `python3 --version` | Runtime | Python 3.9.6 | Implementation must stay 3.9-compatible (no `match`, no `X \| Y` type unions at runtime) |
 | 2026-10-16 | User | Request text above | Intended behavior | Three named skips; internal-only callers; upstream validation | — |
 
@@ -130,7 +130,6 @@ N/A — not applicable.
 | Artifact Path | Owner | Purpose | Scope | Related Requirement / AC IDs | Status | Approval Applicability / State |
 | --- | --- | --- | --- | --- | --- | --- |
 | `/Users/normy/Desktop/claude-test/DESIGN.md` | Solution Designer | User-requested design rationale for the project; also the project design document later tasks read | Whole feature | All | Current | Not behavior-defining; follows `design-spec.md` |
-| `/Users/normy/Desktop/claude-test/agent-feedback/solution-designer-skipped-design-principles.md` | Solution Designer | Process feedback (skill gate), not part of this feature | None | None | Closed | Not applicable |
 
 ## Assumptions, Unknowns, And Risks
 
