@@ -1,0 +1,30 @@
+PASS P-01 process_order identical to baseline on 120 input combinations (outcome, exception type+message, full ordered collaborator call log, final status)
+PASS P-02 success active=True status=PENDING  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=True status=PENDING  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=True status=PAID  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=True status=PAID  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=True status=ACTIVE  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=True status=ACTIVE  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=True status=CANCELLED  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=True status=CANCELLED  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=False status=PENDING  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=False status=PENDING  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=False status=PAID  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=False status=PAID  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=False status=ACTIVE  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=False status=ACTIVE  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=False status=CANCELLED  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=False status=CANCELLED  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 reject amount=0 cust=True status=PAID  ('raise', 'ValueError', 'Amount must be positive') []
+PASS P-02 reject amount=-1 cust=None status=None  ('raise', 'ValueError', 'Amount must be positive') []
+PASS P-02 reject amount=40.0 cust=None status=None  ('raise', 'ValueError', 'Customer not found') [('get_customer', 'c1')]
+PASS P-02 reject amount=40.0 cust=False status=None  ('raise', 'ValueError', 'Order not found') [('get_customer', 'c1'), ('get_order', 'o1')]
+PASS P-03 batch: s1,s2 charged each cycle; s3 fails each cycle with exact message  {(1, 's1'): 'ok', (1, 's2'): 'ok', (1, 's3'): 'Exception: Payment failed: insufficient funds', (2, 's1'): 'ok', (2, 's2'): 'ok', (2, 's3'): 'Exception: Payment failed: insufficient funds'}
+PASS P-03 final statuses s1=PAID s2=PAID s3=ACTIVE (failed order unchanged)
+PASS P-03 six gateway charges (two per account, PAID orders recharged by design DEC-003)  [('charge', 'tok1', 99.0), ('charge', 'tok2', 99.0), ('charge', 'tok3', 99.0), ('charge', 'tok1', 99.0), ('charge', 'tok2', 99.0), ('charge', 'tok3', 99.0)]
+PASS P-03 four saves, none for s3  [('save_order', 's1', 'PAID'), ('save_order', 's2', 'PAID'), ('save_order', 's1', 'PAID'), ('save_order', 's2', 'PAID')]
+PASS P-03 zero notifications across batch
+PASS P-04 checkout success order: charge -> save(PAID) -> receipt  [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 25.0), ('save_order', 'o1', 'PAID'), ('send_receipt', 'c1@example.com', 'o1')]
+
+RESULT: ALL PASS
+exit=0

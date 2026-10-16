@@ -1,0 +1,21 @@
+test_charges_inactive_customer_for_non_pending_order (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_missing_customer_is_rejected (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_missing_order_is_rejected (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_non_positive_amount_is_rejected (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_payment_failure_raises_and_leaves_order_unchanged (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_signature_matches_process_order_identity_shape (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_success_for_active_customer_and_pending_order_sends_nothing (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_inactive_customer_is_rejected (test_order_service.ProcessOrderTests) ... ok
+test_missing_customer_is_rejected (test_order_service.ProcessOrderTests) ... ok
+test_missing_order_is_rejected (test_order_service.ProcessOrderTests) ... ok
+test_non_pending_order_is_rejected (test_order_service.ProcessOrderTests) ... ok
+test_non_positive_amount_is_rejected (test_order_service.ProcessOrderTests) ... ok
+test_payment_failure_raises_and_leaves_order_unchanged (test_order_service.ProcessOrderTests) ... ok
+test_signature_has_no_parameter_that_relaxes_checks (test_order_service.ProcessOrderTests) ... ok
+test_success_charges_marks_paid_saves_and_sends_receipt (test_order_service.ProcessOrderTests) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.005s
+
+OK
+exit=0

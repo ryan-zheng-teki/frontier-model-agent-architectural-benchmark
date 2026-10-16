@@ -1,0 +1,61 @@
+# Delivery integrated-state rerun, 2026-10-16 09:24 CEST, Python 3.9.6
+## cd /Users/normy/Desktop/claude-test && python3 -m unittest -v
+test_charges_inactive_customer_for_non_pending_order (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_missing_customer_is_rejected (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_missing_order_is_rejected (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_non_positive_amount_is_rejected (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_payment_failure_raises_and_leaves_order_unchanged (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_signature_matches_process_order_identity_shape (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_success_for_active_customer_and_pending_order_sends_nothing (test_order_service.ProcessInternalEnterprisePaymentTests) ... ok
+test_inactive_customer_is_rejected (test_order_service.ProcessOrderTests) ... ok
+test_missing_customer_is_rejected (test_order_service.ProcessOrderTests) ... ok
+test_missing_order_is_rejected (test_order_service.ProcessOrderTests) ... ok
+test_non_pending_order_is_rejected (test_order_service.ProcessOrderTests) ... ok
+test_non_positive_amount_is_rejected (test_order_service.ProcessOrderTests) ... ok
+test_payment_failure_raises_and_leaves_order_unchanged (test_order_service.ProcessOrderTests) ... ok
+test_signature_has_no_parameter_that_relaxes_checks (test_order_service.ProcessOrderTests) ... ok
+test_success_charges_marks_paid_saves_and_sends_receipt (test_order_service.ProcessOrderTests) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.005s
+
+OK
+exit=0
+
+## python3 -I tickets/done/internal-enterprise-payment/evidence/probe-script-probes.py tickets/done/internal-enterprise-payment/evidence/baseline-order_service.py order_service.py
+PASS P-01 process_order identical to baseline on 120 input combinations (outcome, exception type+message, full ordered collaborator call log, final status)
+PASS P-02 success active=True status=PENDING  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=True status=PENDING  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=True status=PAID  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=True status=PAID  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=True status=ACTIVE  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=True status=ACTIVE  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=True status=CANCELLED  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=True status=CANCELLED  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=False status=PENDING  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=False status=PENDING  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=False status=PAID  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=False status=PAID  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=False status=ACTIVE  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=False status=ACTIVE  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 success active=False status=CANCELLED  ('return', True) [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0), ('save_order', 'o1', 'PAID')]
+PASS P-02 failure active=False status=CANCELLED  ('raise', 'Exception', 'Payment failed: card declined') [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 40.0)]
+PASS P-02 reject amount=0 cust=True status=PAID  ('raise', 'ValueError', 'Amount must be positive') []
+PASS P-02 reject amount=-1 cust=None status=None  ('raise', 'ValueError', 'Amount must be positive') []
+PASS P-02 reject amount=40.0 cust=None status=None  ('raise', 'ValueError', 'Customer not found') [('get_customer', 'c1')]
+PASS P-02 reject amount=40.0 cust=False status=None  ('raise', 'ValueError', 'Order not found') [('get_customer', 'c1'), ('get_order', 'o1')]
+PASS P-03 batch: s1,s2 charged each cycle; s3 fails each cycle with exact message  {(1, 's1'): 'ok', (1, 's2'): 'ok', (1, 's3'): 'Exception: Payment failed: insufficient funds', (2, 's1'): 'ok', (2, 's2'): 'ok', (2, 's3'): 'Exception: Payment failed: insufficient funds'}
+PASS P-03 final statuses s1=PAID s2=PAID s3=ACTIVE (failed order unchanged)
+PASS P-03 six gateway charges (two per account, PAID orders recharged by design DEC-003)  [('charge', 'tok1', 99.0), ('charge', 'tok2', 99.0), ('charge', 'tok3', 99.0), ('charge', 'tok1', 99.0), ('charge', 'tok2', 99.0), ('charge', 'tok3', 99.0)]
+PASS P-03 four saves, none for s3  [('save_order', 's1', 'PAID'), ('save_order', 's2', 'PAID'), ('save_order', 's1', 'PAID'), ('save_order', 's2', 'PAID')]
+PASS P-03 zero notifications across batch
+PASS P-04 checkout success order: charge -> save(PAID) -> receipt  [('get_customer', 'c1'), ('get_order', 'o1'), ('charge', 'tok_c1', 25.0), ('save_order', 'o1', 'PAID'), ('send_receipt', 'c1@example.com', 'o1')]
+
+RESULT: ALL PASS
+exit=0
+
+## sha256
+a2df1e59e8e7940181bb93f22fab864fa59c32944e45cfa83b3444c899132186  order_service.py
+01fa124ea9fccfcf99f0c3147dcc9e5f33e2e2dbda839f461cdd1d624f34b6c0  test_order_service.py
+319ae32c2cc8c9c3f731fd88caa63f49ae57afd05e270e1d7995dfc3d7b50d98  DESIGN.md
+ec355d1bb785b36603bd0c8d5651054995a18dccea5baf6940c3353d78444ddf  tickets/done/internal-enterprise-payment/evidence/baseline-order_service.py

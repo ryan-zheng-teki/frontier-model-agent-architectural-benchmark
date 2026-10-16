@@ -1,0 +1,5 @@
+M M1-receipt-on-internal-success -> durable suite: FAILED (failures=2)
+M M2-runtimeerror-on-failure -> durable suite: FAILED (failures=2)
+M M3-pending-check-on-internal -> durable suite: FAILED (failures=1, errors=2)
+M M4-checkout-message-changed -> durable suite: FAILED (failures=2)
+P-01 sensitivity (baseline vs message-mutant as 'current'): 40 mismatching combinations detected
